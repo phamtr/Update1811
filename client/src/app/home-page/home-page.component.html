@@ -1,0 +1,14 @@
+<div *ngIf="!(user | async)">
+  <a routerLink="/signin">Sign In to continue</a>
+</div>
+<div *ngIf="user | async">
+  <form (ngSubmit)="createStory();" [formGroup]="storyForm">
+    <textarea formControlName="content" id="" cols="30" rows="5" class="form-control" placeholder="Bạn đang nghĩ gì?"></textarea>
+    <br>
+    <button class="btn btn-success">Đăng</button>
+  </form>
+  <div class="story-container">
+      <app-story [storyInfo]="story" *ngFor="let story of (stories | async)">
+      </app-story>
+  </div>
+</div>
